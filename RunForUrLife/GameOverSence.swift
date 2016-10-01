@@ -11,28 +11,28 @@ import SpriteKit
 
 class GameOverSence : SKScene {
     var gameScene : GameScene!
-    override func didMoveToView(view: SKView) {
+    var score = 0
+    override func didMove(to view: SKView) {
         let backGround = SKSpriteNode(imageNamed: "background_over.png")
-        backGround.setScale(0.8)
-        backGround.anchorPoint = CGPointZero
-        backGround.position = CGPointZero
+        backGround.setScale(0.5)
+        backGround.anchorPoint = CGPoint.zero
+        backGround.position = CGPoint.zero
 
-        let gameOver = SKLabelNode(text: "GAME OVER")
-        gameOver.fontName = "Tahoma";
-        gameOver.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2)
-//        let scoreLabel = SKLabelNode(text: "Your Score: \(gameScene.yourScore)")
-//        scoreLabel.fontName = "Tahoma"; scoreLabel.fontSize = 8
-//        scoreLabel.position = CGPoint(x: self.frame.width/2, y: self.frame.width/3)
-        let tap = SKLabelNode(text: "Tap to Restart")
-        tap.position = CGPoint(x: self.frame.width/2, y: self.frame.height/2.3)
+        let scoreLabel = SKLabelNode(text: "Your Score: \(self.score)")
+        scoreLabel.fontName = "Tahoma"; scoreLabel.fontSize = 15
+        scoreLabel.position = CGPoint(x: self.frame.width/2, y: self.frame.width/3)
         addChild(backGround)
-        addChild(gameOver)
-        addChild(tap)
+        addChild(scoreLabel)
+       
        
     }
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    func set_up(score : Int) -> Void {
+        self.score = score
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let gameScene = GameScene(size: (self.view?.frame.size)!)
         
-        self.view?.presentScene(gameScene, transition: SKTransition.fadeWithColor(UIColor.whiteColor(), duration: 0.01))
+        self.view?.presentScene(gameScene, transition: SKTransition.fade(with: UIColor.white, duration: 0.01))
     }
 }

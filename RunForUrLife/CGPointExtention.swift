@@ -13,34 +13,34 @@ import SpriteKit
 import Foundation
 
 extension CGPoint {
-    func add(other : CGPoint) -> CGPoint {
+    func add(_ other : CGPoint) -> CGPoint {
         let retX = self.x + other.x
         let retY = self.y + other.y
         return CGPoint(x: retX, y: retY)
     }
-    func subtract(other : CGPoint) -> CGPoint {
+    func subtract(_ other : CGPoint) -> CGPoint {
         let retX = self.x - other.x
         let retY = self.y - other.y
         return CGPoint(x: retX, y: retY)
     }
-    func multiply(hs : CGFloat) -> CGPoint {
+    func multiply(_ hs : CGFloat) -> CGPoint {
         let retX = self.x * hs
         let retY = self.y * hs
         return CGPoint(x: retX, y: retY)
     }
-    func distance(other : CGPoint) -> CGFloat {
+    func distance(_ other : CGPoint) -> CGFloat {
         return sqrt((self.x - other.x)*(self.x - other.x) + (self.y - other.y) * (self.y - other.y))
         
     }
     func normalize() -> CGPoint {
-        let kc = distance(CGPointZero)
+        let kc = distance(CGPoint.zero)
         let Result = CGPoint(x: self.x / kc, y: self.y / kc)
         return Result
     }
     
 }
 extension CGRect {
-    func mutiply(k : CGFloat) -> CGRect {
+    func mutiply(_ k : CGFloat) -> CGRect {
         let h = self.size.height*2
         let w = self.size.width*2
         return CGRect(x: self.origin.x, y: self.origin.y, width: w, height: h)
