@@ -12,8 +12,11 @@ class BulletController : Controller {
     static var SPEED : CGFloat = 100
     func setup(_ parent: SKNode, you : View, nest : View) {
         addFlyAction(parent, you: you, nest: nest)
+<<<<<<< HEAD
         setupContact()
         confirgurePhysics()
+=======
+>>>>>>> ef982c5789889e9bb01a22176632e6bc76a1ee16
     }
     
     func addFlyAction(_ parent: SKNode, you : View, nest : View) -> Void {
@@ -26,6 +29,7 @@ class BulletController : Controller {
         self.view.run(flyAction)
         self.view.removeFromParent()
     }
+<<<<<<< HEAD
     func setupContact() {
         self.view.handleContact = {
             otherView in
@@ -48,4 +52,6 @@ class BulletController : Controller {
     }
 
 
+=======
+>>>>>>> ef982c5789889e9bb01a22176632e6bc76a1ee16
 }

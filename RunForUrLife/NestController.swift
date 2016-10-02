@@ -14,6 +14,7 @@ class NestController : Controller {
     let maxEnemy = 5
     let SPEED_BASE : CGFloat = 100
     var you : View!
+<<<<<<< HEAD
     var youHealth = 3
     var score = 0
     var sC = 0
@@ -27,10 +28,23 @@ class NestController : Controller {
         if !bulletSetup {
             bulletSetup = true
             self.view.run(SKAction.repeatForever(
+=======
+    override func setup(parent : SKNode) -> Void {
+        var i = 0;
+        self.view.run(SKAction.repeatForever(
+            SKAction.sequence(
+                [SKAction.run({
+                    self.addEnemy(parent, speed: self.SPEED_BASE * (1 + CGFloat(i) / 20.0))
+                    i += 1;
+                }), SKAction.wait(forDuration: TimeInterval(timeForNextEnemy))])))
+        
+        self.view.run(SKAction.repeatForever(
+>>>>>>> ef982c5789889e9bb01a22176632e6bc76a1ee16
             SKAction.sequence(
                 [SKAction.run({
                     self.addBullet(parent, you: self.you)
                 }), SKAction.wait(forDuration: TimeInterval(timeForNextBullet))])))
+<<<<<<< HEAD
         }
         if score >= 5 {
             if !krupSetup {
@@ -98,6 +112,14 @@ class NestController : Controller {
         parent.addChild(smoke)
         
     }
+=======
+        
+    }
+    
+    func update(_ you : View) -> Void {
+        self.you = you
+    }
+>>>>>>> ef982c5789889e9bb01a22176632e6bc76a1ee16
     func addEnemy(_ parent : SKNode, speed : CGFloat) -> Void {
         let enemy = View(imageNamed: "enemy_1.png")
         var enemyTextures : [SKTexture] = []
@@ -127,6 +149,7 @@ class NestController : Controller {
         enemy.run(SKAction.repeatForever(SKAction.sequence(
             [SKAction.run({
                 enemyController.update(self.you)
+<<<<<<< HEAD
                 self.youHealth = enemyController.youHealth
             }), SKAction.wait(forDuration: 0.01)])))
         enemyController.setup(parent, speed: speed)
@@ -135,6 +158,10 @@ class NestController : Controller {
                 self.youHealth = enemyController.youHealth
             }), SKAction.wait(forDuration: 0.01)])))
         
+=======
+            }), SKAction.wait(forDuration: 0.01)])))
+        enemyController.setup(parent, speed: speed)
+>>>>>>> ef982c5789889e9bb01a22176632e6bc76a1ee16
         parent.addChild(enemy)
         parent.run(SKAction.sequence([SKAction.wait(forDuration: (TimeInterval) (timeForNextEnemy * maxEnemy)),SKAction.run({
             enemy.removeFromParent()
@@ -171,6 +198,7 @@ class NestController : Controller {
             enemyBullet.removeFromParent()
         })]))
         
+<<<<<<< HEAD
     }
     func addKryp(_ parent : SKNode, you : View) -> Void {
         let kryp = View(imageNamed: "kryp.png")
@@ -205,4 +233,15 @@ class NestController : Controller {
         
     }
     
+=======
+        //        //vector dich chuyen
+        //        let vectorMove = you.position.subtract(positionBulletEnemy).normalize().multiply(self.frame.size.height)
+        //        //Action dich chuyen
+        //        let move = SKAction.moveBy(CGVector(dx: vectorMove.x, dy: vectorMove.y), duration: NSTimeInterval ((self.frame.size.height + self.frame.size.width)/100/enemyBulletSpeed))
+        //        let movePeriod = SKAction.sequence([move, SKAction.waitForDuration(0.001)])
+        //        let moveForever = SKAction.repeatActionForever(movePeriod)
+        //        enemyBullet.runAction(moveForever)
+        
+    }
+>>>>>>> ef982c5789889e9bb01a22176632e6bc76a1ee16
 }
