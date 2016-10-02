@@ -9,7 +9,7 @@
 import SpriteKit
 
 class Controller {
-    internal let view: View
+    internal var view: View
     
     init(view: View) {
         self.view = view

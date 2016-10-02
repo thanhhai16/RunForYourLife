@@ -44,7 +44,4 @@ class StarController: Controller {
         }
         
     }
-    func getScore(score : Int) -> Void {
-        self.score = score
     }
-}

@@ -9,54 +9,102 @@
 import SpriteKit
 
 class YouController : Controller {
-    let SPEED : Float = 150
+    var youHealth = 5
+    var SPEED : Float = 200
+    var powerUp = false
+    var you : View!
+
     override func setup(parent: SKNode) {
         configurePhysics()
+        setupResponds(parent : parent)
+        
+            }
+    func update(_ you : View) -> Void {
+        self.you = you
     }
-    func moveTo(position : CGPoint) -> Void {
+        func moveTo(position : CGPoint) -> Void {
         let distance = Float(view.position.distance(position))
         let TIME = distance/SPEED
         let move = SKAction.move(to: position, duration:TimeInterval(TIME) )
         view.run(move)
     }
     func configurePhysics() {
-        // physics body
-//        var offsetX = CGFloat(view.frame.size.width * view.anchorPoint.x)
-//        var offsetY = CGFloat(view.frame.size.height * view.anchorPoint.y)
-//        
-//        let path = CGMutablePath()
-//        path.move(to: CGPoint(x: 4 - offsetX, y: 17 - offsetY))
-//        path.addLine(to: CGPoint(x: 21 - offsetX, y: 17-offsetY))
-//        path.addLine(to: CGPoint(x: 24 - offsetX, y: 15 - offsetY))
-//        path.addLine(to: CGPoint(x: 24 - offsetX, y: 14 - offsetY))
-//        path.addLine(to: CGPoint(x: 21 - offsetX, y: 9 - offsetY))
-//        path.addLine(to: CGPoint(x: 20 - offsetX, y: 8 - offsetY))
-//        path.addLine(to: CGPoint(x: 12 - offsetX, y: 0 - offsetY))
-//        path.addLine(to: CGPoint(x: 3 - offsetX, y: 9 - offsetY))
-//        path.addLine(to: CGPoint(x: 0 - offsetX, y: 12 - offsetY))
-//        path.addLine(to: CGPoint(x: 0 - offsetX, y: 14 - offsetY))
-//        
-//        path.closeSubpath()
-        
-//        view.physicsBody = SKPhysicsBody(polygonFrom: path)
         view.physicsBody = SKPhysicsBody(rectangleOf: self.view.size)
         
         // bitmask
         view.physicsBody?.categoryBitMask = PHYSIC_MASK_YOU
         view.physicsBody?.collisionBitMask = 0
-        view.physicsBody?.contactTestBitMask = PHYSIC_MASK_STAR
+        view.physicsBody?.contactTestBitMask = PHYSIC_MASK_ENEMY | PHYSIC_MASK_BULLETENEMY
         }
-    func setupContact() {
-        self.view.handleContact = {
-            otherView in
-            if let starView = otherView as? View {
-                starView.removeFromParent()
+    func setupResponds(parent : SKNode) {
+        if let View = self.view as? youView {
+            View.getHit = {
+                damage in
+                if self.powerUp == false {
+                    self.youHealth -= damage
+                }
+                
+                
                 
             }
-            
         }
-        
+        if let View = self.view as? youView {
+            View.get = {
+                damage in
+                if damage == 3 {
+                    self.view.run(SKAction.playSoundFileNamed("heal_sound.wav", waitForCompletion: true))
+                    self.youHealth = 5
+                    
+                    }
+
+                if damage == 1 {
+                    self.view.run(SKAction.playSoundFileNamed("powerup_sound.wav", waitForCompletion: true))
+
+                    self.view.run(SKAction.sequence([
+                        SKAction.run {
+                            self.powerUp = true
+                        }, SKAction.wait(forDuration: 5),
+                           SKAction.run {
+                            self.powerUp = false
+                        }
+                        ]))
+                    self.view.run(SKAction.sequence([
+                        SKAction.run {
+                            self.view.texture = SKTexture(imageNamed: "main_1.png")
+                        }, SKAction.wait(forDuration: 5)
+                        , SKAction.run {
+                            self.view.texture = SKTexture(imageNamed: "main.png")
+                        }
+                        ]))
+                }
+                if damage == 2 {
+                    self.view.run(SKAction.playSoundFileNamed("kryp_sound.wav", waitForCompletion: true))
+                    
+                    self.view.run(SKAction.sequence([
+                        SKAction.run {
+                            self.SPEED = 100
+                        }, SKAction.wait(forDuration: 2),
+                           SKAction.run {
+                            self.SPEED = 200
+                        }
+                        ]))
+                    self.view.run(SKAction.sequence([
+                        SKAction.run {
+                            self.view.texture = SKTexture(imageNamed: "main_2.png")
+                        }, SKAction.wait(forDuration: 2)
+                        , SKAction.run {
+                            self.view.texture = SKTexture(imageNamed: "main.png")
+                        }
+                        ]))
+                }
+
+
+            }
+        }
+
     }
 
+    
+    
     
 }
