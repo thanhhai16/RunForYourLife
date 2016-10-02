@@ -10,22 +10,16 @@ import SpriteKit
 
 class EnemyController : Controller {
     var you: View!
-<<<<<<< HEAD
     var youHealth = 3
-=======
->>>>>>> ef982c5789889e9bb01a22176632e6bc76a1ee16
     func setup(_ parent : SKNode, speed : CGFloat) -> Void {
         view.run(SKAction.repeatForever(SKAction.sequence(
             [SKAction.run({
                 self.addFlyAction(parent, speed: speed)
             }), SKAction.wait(forDuration: 0.01)])))
-<<<<<<< HEAD
         confirgurePhysics()
         self.setupContact()
 
         
-=======
->>>>>>> ef982c5789889e9bb01a22176632e6bc76a1ee16
     }
     
     func update(_ you: View) -> Void {
@@ -38,7 +32,6 @@ class EnemyController : Controller {
         self.view.run(flyAction)
     }
     func confirgurePhysics() -> Void {
-<<<<<<< HEAD
         view.physicsBody = SKPhysicsBody(rectangleOf: self.view.size)
         
         view.physicsBody?.categoryBitMask = PHYSIC_MASK_ENEMY
@@ -59,10 +52,6 @@ class EnemyController : Controller {
         }
     }
 
-=======
-        
-    }
->>>>>>> ef982c5789889e9bb01a22176632e6bc76a1ee16
     
     func setupRespond() -> Void {
         

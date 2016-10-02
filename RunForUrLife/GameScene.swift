@@ -9,28 +9,16 @@
 import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-<<<<<<< HEAD
     var you : youView!                   //player
-=======
-    var you : View!                     //player
->>>>>>> ef982c5789889e9bb01a22176632e6bc76a1ee16
     var lastUpdateTime : TimeInterval = -1
     var gates : [SKSpriteNode] = []             //cac Gate
     var yourScore = 0
     var yourSpeed : CGFloat = 1.5               //toc do di chuyen cua player
-<<<<<<< HEAD
     var scoreLabel : View!               //Display your score
     var youHealth = 5
     var healthLabel : SKSpriteNode!
     var powerUp = false
     
-=======
-    var scoreLabel : SKLabelNode!               //Display your score
-    var youHealth = 3
-    var healthLabel : SKLabelNode!
-    
-    
->>>>>>> ef982c5789889e9bb01a22176632e6bc76a1ee16
     let MAXGate = 4                             //so luong Gate
     var nest : View!
     var nest1: View!
@@ -55,7 +43,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addGate(firstArg: "gate2_0.png", secondArg: 1, thirdArg: CGPoint(x: self.frame.size.width, y: 0))
         addGate(firstArg: "gate2_0.png", secondArg: 2, thirdArg: CGPoint(x: 0, y: self.frame.size.height))
         addGate(firstArg: "gate1_0.png", secondArg: 3, thirdArg: CGPoint(x: self.frame.size.width, y: self.frame.size.height))
-<<<<<<< HEAD
         addPower()
         addHealer()
         addMain()
@@ -64,14 +51,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addStar()  //star - food
         addLabel()
         addNest(positionNestInGS)
-=======
-        addMain()
-        addNest(positionNestInGS)   //them nest vao vitri positionNestInGS
-        addStar()   //star - food
-        scoreLabel = SKLabelNode(text: "Score :\(yourScore)")
-        healthLabel = SKLabelNode(text: "Health:\(youHealth)")
-        addChild(scoreLabel)
->>>>>>> ef982c5789889e9bb01a22176632e6bc76a1ee16
         configurePhysics()
     }
     func addHealer() {
@@ -184,7 +163,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func addNest(_ location : CGPoint){
         //cai Nest vao vi tri location
         nest = View(imageNamed: "nest_0.png")
-<<<<<<< HEAD
         nest.anchorPoint = CGPoint(x: 1, y: 0.5)
         nest.setScale(0.17)// chinh kich thuoc Nest
         nest.position = location
@@ -207,24 +185,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         nest1.position = location
         addChild(nest1)
         
-=======
-        //        let positionNestInGS = CGPoint(x: self.frame.size.width * positionNest.x, y: self.frame.size.height * positionNest.y)
-        nest.anchorPoint = CGPoint(x: 1, y: 0.5)
-        nest.setScale(0.17)// chinh kich thuoc Nest
-        nest.position = location
-        
-        let nestController = NestController(view: nest)
-        
-        nestController.update(self.you)
-        
-        nest.run(SKAction.repeatForever(SKAction.sequence(
-            [SKAction.run({
-                nestController.update(self.you)
-            }), SKAction.wait(forDuration: 0.01)])))
-        nestController.setup(parent: self)
-        
-        addChild(nest)
->>>>>>> ef982c5789889e9bb01a22176632e6bc76a1ee16
     }
     
     
@@ -294,16 +254,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         /* Called before each frame is rendered */
-<<<<<<< HEAD
         if youHealth <= 0 {
             let gameOver = GameOverSence(size: (self.view?.frame.size)!)
             gameOver.set_up(score: self.yourScore)
             self.view?.presentScene(gameOver, transition: SKTransition.fade(with: UIColor.blue, duration: 0.1))
         }
-=======
-        updateLabel()
-        updateHealthLabel()
->>>>>>> ef982c5789889e9bb01a22176632e6bc76a1ee16
     }
 }
 
