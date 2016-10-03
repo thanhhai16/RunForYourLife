@@ -13,16 +13,16 @@ class YouController : Controller {
     var SPEED : Float = 200
     var powerUp = false
     var you : View!
-
+    
     override func setup(parent: SKNode) {
         configurePhysics()
         setupResponds(parent : parent)
         
-            }
+    }
     func update(_ you : View) -> Void {
         self.you = you
     }
-        func moveTo(position : CGPoint) -> Void {
+    func moveTo(position : CGPoint) -> Void {
         let distance = Float(view.position.distance(position))
         let TIME = distance/SPEED
         let move = SKAction.move(to: position, duration:TimeInterval(TIME) )
@@ -35,7 +35,7 @@ class YouController : Controller {
         view.physicsBody?.categoryBitMask = PHYSIC_MASK_YOU
         view.physicsBody?.collisionBitMask = 0
         view.physicsBody?.contactTestBitMask = PHYSIC_MASK_ENEMY | PHYSIC_MASK_BULLETENEMY
-        }
+    }
     func setupResponds(parent : SKNode) {
         if let View = self.view as? youView {
             View.getHit = {
@@ -53,13 +53,16 @@ class YouController : Controller {
                 damage in
                 if damage == 3 {
                     self.view.run(SKAction.playSoundFileNamed("heal_sound.wav", waitForCompletion: true))
-                    self.youHealth = 5
-                    
+                    self.youHealth = self.youHealth + 2
+                    if self.youHealth >= 5 {
+                        self.youHealth = 5
                     }
-
+                    
+                }
+                
                 if damage == 1 {
                     self.view.run(SKAction.playSoundFileNamed("powerup_sound.wav", waitForCompletion: true))
-
+                    
                     self.view.run(SKAction.sequence([
                         SKAction.run {
                             self.powerUp = true
@@ -97,13 +100,13 @@ class YouController : Controller {
                         }
                         ]))
                 }
-
-
+                
+                
             }
         }
-
+        
     }
-
+    
     
     
     

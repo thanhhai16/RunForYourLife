@@ -28,9 +28,9 @@ class NestController : Controller {
             bulletSetup = true
             self.view.run(SKAction.repeatForever(
             SKAction.sequence(
-                [SKAction.run({
+                [SKAction.wait(forDuration: 1),SKAction.run({
                     self.addBullet(parent, you: self.you)
-                }), SKAction.wait(forDuration: TimeInterval(timeForNextBullet))])))
+                }), SKAction.wait(forDuration: TimeInterval(Double(timeForNextBullet) - 2))])))
         }
         if score >= 5 {
             if !krupSetup {

@@ -12,6 +12,7 @@ import SpriteKit
 class GameOverSence : SKScene {
     var gameScene : GameScene!
     var score = 0
+    var tapTo : View!
     override func didMove(to view: SKView) {
         let backGround = SKSpriteNode(imageNamed: "background_over.png")
         backGround.setScale(0.5)
@@ -19,8 +20,18 @@ class GameOverSence : SKScene {
         backGround.position = CGPoint.zero
 
         let scoreLabel = SKLabelNode(text: "Your Score: \(self.score)")
-        scoreLabel.fontName = "Tahoma"; scoreLabel.fontSize = 15
-        scoreLabel.position = CGPoint(x: self.frame.width/2, y: self.frame.width/3)
+        scoreLabel.fontName = "Zapfino"; scoreLabel.fontSize = 30
+        scoreLabel.position = CGPoint(x: self.frame.width/2, y: self.frame.width * 2/3)
+        tapTo = View(imageNamed: "replay.png")
+        tapTo.setScale(0.8)
+        tapTo.name = "Tap"
+        tapTo.position = CGPoint(x: self.frame.width/2, y: self.frame.height * 1/5)
+        self.run(SKAction.sequence([
+            SKAction.wait(forDuration: 0.5),
+            SKAction.run {
+                self.addChild(self.tapTo)
+            }
+            ]))
         addChild(backGround)
         addChild(scoreLabel)
        
@@ -31,8 +42,31 @@ class GameOverSence : SKScene {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let gameScene = GameScene(size: (self.view?.frame.size)!)
+        if let tapButton = childNode(withName: "Tap") {
+            if let touch = touches.first {
+                var location = touch.location(in: self)
+                if tapButton.contains(location) {
+                    self.run(SKAction.sequence([
+                        SKAction.run {
+                            self.tapTo.texture = SKTexture(imageNamed: "replay_tap.png")
+                        }, SKAction.wait(forDuration: 0.5),
+                           SKAction.run {
+                            let gameScene = GameScene(size: (self.view?.frame.size)!)
+                            self.view?.presentScene(gameScene, transition: SKTransition.doorsOpenHorizontal(withDuration: 1))
+                        }
+                        ]))
+                    
+
+                }
+            }
+        }
+
         
-        self.view?.presentScene(gameScene, transition: SKTransition.fade(with: UIColor.white, duration: 0.01))
-    }
+
+
+
+        
+        
+
+}
 }

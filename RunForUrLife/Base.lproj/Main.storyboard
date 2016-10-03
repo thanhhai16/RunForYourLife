@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rMQ-T9-Dcq">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -62,7 +61,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="178" y="-23"/>
+            <point key="canvasLocation" x="195" y="5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="2U0-S4-KZy">
@@ -91,7 +90,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="naR-8Y-d9x">
                                 <frame key="frameInset" minX="40" minY="80" width="240" height="485"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <mutableString key="text">Tháng 10/2016,
+                                <string key="text">Tháng 10/2016,
 SuperMan và BatMan đã có cuộc tranh tài để xem ai là ngừoi có sức mạnh kinh khủng nhất.
 Batman - với số tài sản khổng lồ của mình, đã chế tạo ra một cỗ máy vừa có thể bắn ra những viên đạn chết người, vừa có thể nhân bản chính Batman để săn lùng SuperMan.
 Và SuperMan, cách duy nhất để anh có thể sống sót chính là né tránh những viên đạn và những vô nhân tính Batman, tìm tới những ngôi sao hy vọng để mong được giúp đỡ.
@@ -100,7 +99,7 @@ Bạn đứng về phe nào ?
 
 Batman hay SuperMan?
 
- </mutableString>
+ </string>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

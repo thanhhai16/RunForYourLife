@@ -189,7 +189,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func addMain() {
-        //add player vao trung tam
         you = youView(imageNamed: "main.png")
         you.setScale(0.8) //chinh lai kich thuoc player
         you.position = CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2)

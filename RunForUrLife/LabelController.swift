@@ -47,7 +47,7 @@ class LabelController : Controller {
 
 
         if (youHealth == 3) {
-            nodeI = SKSpriteNode(imageNamed: "health_1.png")
+            nodeI = SKSpriteNode(imageNamed: "health_3.png")
             nodeI.setScale(0.3)
             nodeI.position = CGPoint(x: parent.frame.width/2, y: 0 + nodeI.frame.height/2)
             parent.addChild(nodeI)
@@ -60,7 +60,7 @@ class LabelController : Controller {
             parent.addChild(nodeI)
         }
         if (youHealth == 1) {
-            nodeI = SKSpriteNode(imageNamed: "health_3.png")
+            nodeI = SKSpriteNode(imageNamed: "health_1.png")
             nodeI.setScale(0.3)
             nodeI.position = CGPoint(x: parent.frame.width/2, y: 0 + nodeI.frame.height/2)
             parent.addChild(nodeI)
